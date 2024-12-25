@@ -63,6 +63,7 @@ return {
 
 		setup_theme(opts, {
 			"find_files",
+			"buffers",
 			"lsp_references",
 			"lsp_definitions",
 			"lsp_implementations",
@@ -74,6 +75,7 @@ return {
 
 		t.load_extension("fzf")
 
-		vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Fuzzy find files in cwd" })
+		vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "Fuzzy find files in cwd" })
+		vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Fuzzy find opened buffers" })
 	end,
 }

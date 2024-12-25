@@ -2,9 +2,11 @@ local Test = function()
 	local width = math.ceil(vim.o.columns * 0.7)
 	local height = math.ceil(vim.o.lines * 0.5)
 
-	local cmd = "source "
+	local cmd = "source"
+		.. " "
 		.. vim.fn.getcwd()
 		.. "/scripts/env.sh && TEST_TYPE=unit npx vitest run --coverage"
+		.. " "
 		.. vim.api.nvim_buf_get_name(0)
 
 	vim.api.nvim_open_win(vim.api.nvim_create_buf(false, true), true, {
