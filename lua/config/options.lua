@@ -28,11 +28,14 @@ opt.splitbelow = true
 
 opt.swapfile = false
 
--- Disable in-line LSP Diagnostics. Shows Diagonostics only on hover
--- Disabling diagnostics to avoid LSP_Lines duplication
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
 vim.diagnostic.config({
 	virtual_text = false,
 	float = {
-		border = "None",
+		border = "rounded",
 	},
 })
+
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
