@@ -27,6 +27,7 @@ return {
 				"html",
 				"cssls",
 				"lua_ls",
+				"gopls",
 			},
 		})
 
@@ -35,6 +36,10 @@ return {
 				"prettier",
 				"stylua",
 				"eslint_d",
+				"golines",
+				"goimports",
+				"delve",
+				"js-debug-adapter",
 			},
 		})
 	end,

@@ -2,7 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
+		{ "saghen/blink.cmp" },
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		{ "folke/neodev.nvim", opts = {} },
 	},
@@ -12,8 +12,6 @@ return {
 		local lspconfig = require("lspconfig")
 
 		local mason_lspconfig = require("mason-lspconfig")
-
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		local km = vim.keymap
 
@@ -44,12 +42,12 @@ return {
 				km.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
 				opts.desc = "Show buffer diagnostics"
-				km.set("n", "<leader>D", function()
+				km.set("n", "<leader>DD", function()
 					t.diagnostics({ bufnr = 0 })
 				end, opts)
 
 				opts.desc = "Show line diagnostics"
-				km.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+				km.set("n", "<leader>D", vim.diagnostic.open_float, opts)
 
 				opts.desc = "Go to previous diagnostic"
 				km.set("n", "[d", vim.diagnostic.goto_prev, opts)
@@ -62,7 +60,7 @@ return {
 			end,
 		})
 
-		local capabilities = cmp_nvim_lsp.default_capabilities()
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 		for type, icon in pairs(signs) do

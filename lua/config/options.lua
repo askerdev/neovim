@@ -1,34 +1,33 @@
-local opt = vim.opt
+local set = vim.opt
 
-opt.tabstop = 3
-opt.shiftwidth = 3
-opt.softtabstop = 3
-opt.expandtab = true
-opt.autoindent = true
+set.tabstop = 2
+set.shiftwidth = 2
+set.softtabstop = 2
+set.expandtab = true
+set.autoindent = true
 
-opt.wrap = false
+set.wrap = false
 
-opt.number = true
-opt.relativenumber = true
+set.number = true
+set.relativenumber = true
 
-opt.showmode = false
-opt.breakindent = true
+set.showmode = false
+set.breakindent = true
 
-opt.ignorecase = true
-opt.smartcase = true
+set.ignorecase = true
+set.smartcase = true
 
-opt.backspace = "indent,eol,start"
+set.backspace = "indent,eol,start"
 
-opt.termguicolors = true
-opt.signcolumn = "yes"
-opt.background = "dark"
+set.termguicolors = true
+set.signcolumn = "yes:1"
+set.background = "dark"
 
-opt.splitright = true
-opt.splitbelow = true
+set.splitright = true
+set.splitbelow = true
 
-opt.swapfile = false
-
--- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+set.swapfile = false
+set.scrolloff = 10
 
 vim.diagnostic.config({
 	virtual_text = false,
@@ -36,6 +35,3 @@ vim.diagnostic.config({
 		border = "rounded",
 	},
 })
-
--- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
--- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
