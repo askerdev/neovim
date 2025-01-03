@@ -1,15 +1,3 @@
-local setup_theme = function(opts, list, theme)
-	if theme == nil then
-		theme = "ivy"
-	end
-
-	for _, value in pairs(list) do
-		opts.pickers[value] = {
-			theme = theme,
-		}
-	end
-end
-
 return {
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
@@ -18,14 +6,34 @@ return {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"folke/todo-comments.nvim",
 	},
-	config = function()
-		local t = require("telescope")
-		local actions = require("telescope.actions")
+	keys = function()
 		local builtin = require("telescope.builtin")
+		return {
+			{ "<leader><leader>", mode = "n", builtin.find_files, desc = "Find git files" },
+			{ "<leader>sb", mode = "n", builtin.buffers, desc = "Find buffer" },
+			{ "<leader>sh", mode = "n", builtin.help_tags, desc = "Find help tags" },
+			{ "<leader>sg", mode = "n", builtin.live_grep, desc = "Find grep string" },
+		}
+	end,
+	opts = function()
+		local actions, builtin = require("telescope.actions"), require("telescope.builtin")
+		local pickers = {
+			find_files = { preview = false, theme = "ivy" },
+		}
 
-		local opts = {
-			pickers = {},
+		for picker, _ in pairs(builtin) do
+			if pickers[picker] == nil then
+				pickers[picker] = {
+					preview = true,
+					theme = "ivy",
+				}
+			end
+		end
+
+		return {
+			pickers = pickers,
 			defaults = {
+				preview = false,
 				file_ignore_patterns = {
 					"node_modules",
 					".idea",
@@ -41,9 +49,6 @@ return {
 					"%.css",
 					"%.scss",
 				},
-				preview = {
-					treesitter = false,
-				},
 				mappings = {
 					n = {
 						["q"] = actions.close,
@@ -52,30 +57,19 @@ return {
 			},
 			extensions = {
 				fzf = {
-					fuzzy = true, -- false will only do exact matching
+					fuzzy = false, -- false will only do exact matching
 					override_generic_sorter = true, -- override the generic sorter
 					override_file_sorter = true, -- override the file sorter
-					case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+					case_mode = "ignore_case", -- or "ignore_case" or "respect_case"
 					-- the default case_mode is "smart_case"
 				},
 			},
 		}
+	end,
 
-		setup_theme(opts, {
-			"find_files",
-			"buffers",
-			"lsp_references",
-			"lsp_definitions",
-			"lsp_implementations",
-			"lsp_type_defintions",
-			"diagnostics",
-		})
-
+	config = function(_, opts)
+		local t = require("telescope")
 		t.setup(opts)
-
 		t.load_extension("fzf")
-
-		vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "Fuzzy find files in cwd" })
-		vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Fuzzy find opened buffers" })
 	end,
 }

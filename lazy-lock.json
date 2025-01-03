@@ -4,6 +4,7 @@
   "blink.cmp": { "branch": "main", "commit": "d534f9e8bf39299c480e0c2e11dad21f51cfb2fe" },
   "conform.nvim": { "branch": "master", "commit": "990d37017e193fe40bdabf058e598e76f5e7d929" },
   "debugjs.nvim": { "branch": "master", "commit": "480bbc4d1e4171bccf5e396b1760965f9b9d0606" },
+  "dressing.nvim": { "branch": "master", "commit": "3a45525bb182730fe462325c99395529308f431e" },
   "flash.nvim": { "branch": "main", "commit": "34c7be146a91fec3555c33fe89c7d643f6ef5cf1" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
   "lazy.nvim": { "branch": "main", "commit": "7e6c863bc7563efbdd757a310d17ebc95166cef3" },
