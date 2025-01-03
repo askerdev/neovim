@@ -7,11 +7,10 @@ return {
 			["q"] = "actions.close",
 		},
 	},
-	config = function(_, opts)
+	keys = function()
 		local oil = require("oil")
-
-		oil.setup(opts)
-
-		vim.keymap.set("n", "<leader>e", oil.toggle_float, { desc = "Explore file tree" })
+		return {
+			{ "<leader>e", mode = "n", oil.toggle_float, desc = "Explore file tree" },
+		}
 	end,
 }
